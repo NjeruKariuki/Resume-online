@@ -1,9 +1,7 @@
 {% extends 'portfolio/base.html' %}
 {%block content %}
-  <div>
-    <div class="title text-3xl">
-      Blogs
-    </div>
+<!--
+
     <div class="container bg-gray mr-5">
       <div class="blog-section bg-gray">
         {% for post in posts %} 
@@ -51,10 +49,39 @@
       {% endif %}
   
     {% endif %}
-    </div>
+
+      -->
+
+<!--blog-->
+<section class="text-gray-400 bg-gray-900 body-font">
+  <div class="container px-5 py-24 mx-auto">
+    <div class="flex flex-wrap -mx-4 -my-8">
+      {% for post in posts %}
+      <div class="py-8 px-4 lg:w-1/3">
+        <div class="h-full flex items-start">
+          <div class="w-12 flex-shrink-0 flex flex-col text-center leading-none">
+            <span class="text-gray-400 pb-2 mb-2 border-b-2 border-gray-700">{{ post.date_posted |date:"M"}}</span>
+            <span class="font-medium text-lg leading-none text-gray-300 title-font">{{ post.date_posted |date:"d"}}</span>
+          </div>
+          <div class="flex-grow pl-6">
+            <h2 class="tracking-widest text-xs title-font font-medium text-indigo-400 mb-1">{{post.category}}</h2>
+            <h1 class="title-font text-xl font-medium text-white mb-3">{{post.title}}</h1>
+            <p class="leading-relaxed mb-5">{{post.content}}</p>
+            <a class="inline-flex items-center">
+              <img alt="blog" src="{{ post.author.profile.image.url }}"
+                class="w-8 h-8 rounded-full flex-shrink-0 object-cover object-center">
+              <span class="flex-grow flex flex-col pl-3">
+                <span class="title-font font-medium text-white">{{ post.author }}</span>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+
+      {% endfor %}
     </div>
   </div>
-   
+</section>
 
 {% endblock content %}
-
