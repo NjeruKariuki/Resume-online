@@ -66,7 +66,16 @@
           <div class="flex-grow pl-6">
             <h2 class="tracking-widest text-xs title-font font-medium text-indigo-400 mb-1">{{post.category}}</h2>
             <h1 class="title-font text-xl font-medium text-white mb-3">{{post.title}}</h1>
+            {% if post.content < 200 %}
             <p class="leading-relaxed mb-5">{{post.content}}</p>
+            {% else %}
+            <p class="article-content">{{ post.content | slice:":180" }}</p>
+            <a href="{% url 'post-detail' post.id  %}" class="btn btn-primary mb-2 mt-1.5 px-3 float-right">Read More &rarr;</a>
+            {% endif %}
+            <br>
+            <br>
+            <hr class="bg-white">
+            <br>
             <a class="inline-flex items-center">
               <img alt="blog" src="{{ post.author.profile.image.url }}"
                 class="w-8 h-8 rounded-full flex-shrink-0 object-cover object-center">
