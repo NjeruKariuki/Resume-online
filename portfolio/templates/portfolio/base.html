@@ -44,6 +44,8 @@
       {% endblock content %}
 
       <!--footer-->
+      
+      <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
       <footer class="text-gray-400 bg-gray-900 body-font">
         <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
           <a class="flex title-font font-medium items-center md:justify-start justify-center text-white">
@@ -99,5 +101,27 @@
      behavior: 'smooth'
 });
   };
+
+  //scroll to top
+  //get the button
+  var topButton = document.getElementById("myBtn");
+
+  //when user scrolls 40px from top, display button
+
+  window.onscroll = function () { scrollFunction()};
+
+  function scrollFunction () {
+    if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40 ) {
+      topButton.style.display = "block";
+    } else {
+      topButton.style.display = "none";
+    }
+  }
+
+  //when user clicks topButton, do topFunction
+  function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
 </script>
 </html>
