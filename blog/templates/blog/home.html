@@ -70,7 +70,7 @@
             <p class="leading-relaxed mb-5">{{post.content}}</p>
             {% else %}
             <p class="article-content">{{ post.content | slice:":180" }}</p>
-            <a href="{% url 'post-detail' post.id  %}" class="btn btn-primary mb-2 mt-1.5 px-3 float-right">Read More &rarr;</a>
+            <a href="{% url 'post-detail' post.id  %}" class="mt-1.5 px-3 btn btn-primary float-right">Read More &rarr;</a>
             {% endif %}
             <br>
             <br>
@@ -99,21 +99,21 @@
         {% if is_paginated %}
   
       {% if page_obj.has_previous %}
-        <a class="btn btn-outline-info mb-4" href="?page=1" style="background-color:#3b82f6;">First</a>
-        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+        <a class="btn btn-primary-info mb-4" href="?page=1" style="background-color:#3b82f6;">First</a>
+        <a class="btn btn-primary-info mb-4" href="?page={{ page_obj.previous_page_number }}" style="background-color:#3b82f6;">Previous</a>
       {% endif %}
   
       {% for num in page_obj.paginator.page_range %}
         {% if page_obj.number == num %}
-          <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+          <a class="btn btn-info mb-4" href="?page={{ num }}" style="background-color:#3b82f6;">{{ num }}</a>
         {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-          <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+          <a class="btn btn-primary-info mb-4" href="?page={{ num }}" style="background-color:#3b82f6;">{{ num }}</a>
         {% endif %}
       {% endfor %}
   
       {% if page_obj.has_next %}
-        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
-        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+        <a class="btn btn-primary mb-4" href="?page={{ page_obj.next_page_number }}" style="background-color:#3b82f6;">Next</a>
+        <a class="btn btn-primary mb-4" href="?page={{ page_obj.paginator.num_pages }}" style="background-color:#3b82f6;">Last</a>
       {% endif %}
   
     {% endif %}
