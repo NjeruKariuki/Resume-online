@@ -16,9 +16,9 @@
             <h2 class="tracking-widest text-xs title-font font-medium text-indigo-400 mb-1">{{post.category}}</h2>
             <h1 class="title-font text-xl font-medium text-white mb-3">{{post.title}}</h1>
             {% if post.content < 200 %}
-            <p class="leading-relaxed mb-5">{{post.content}}</p>
+            <p class="leading-relaxed mb-5">{{post.content|safe }}</p>
             {% else %}
-            <p class="article-content">{{ post.content | slice:":180" }}</p>
+            <p class="article-content">{{ post.content | slice:":180" | safe}}</p>
             <a href="{% url 'post-detail' post.id  %}" class="mt-1.5 px-3 btn btn-primary float-right">Read More &rarr;</a>
             {% endif %}
             <br>

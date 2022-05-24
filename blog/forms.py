@@ -1,12 +1,20 @@
+from turtle import width
 from .models import Comment, Post
 from django import forms
-from tinymce.widgets import TinyMCE
+from ckeditor.widgets import CKEditorWidget
+from ckeditor.fields import RichTextFormField
+
 
 class PostForm(forms.ModelForm):
-    content = forms.CharField(widget=TinyMCE(attrs={'cols': 80, 'rows':50,'class': 'form-control'}))
     class Meta:
         model = Post
         fields = ('title', 'date_posted', 'content', 'author',)
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Title'}),
+            'date_posted': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Date posted'}),
+            'content': RichTextFormField(config_name='default'),
+            'author': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Author'})
+        }
 
 
 class CommentForm(forms.ModelForm):
