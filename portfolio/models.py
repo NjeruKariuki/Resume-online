@@ -15,7 +15,7 @@ class Technology(models.Model):
 
 class Project(models.Model):
     name = models.CharField(max_length=50)
-    technologies = models.ForeignKey(Technology, blank=True, null=True, on_delete=models.CASCADE)
+    technologies = models.ManyToManyField(Technology, blank=True, null=True)
     description = models.TextField(max_length=500, blank=True)
     git_link = models.CharField(max_length=200, blank=True)
     images = models.ImageField(upload_to='projects/', blank=True)
