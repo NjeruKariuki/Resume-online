@@ -16,8 +16,9 @@ def portfolio(request):
 	return render(request,'portfolio/dashboard.html', context)
 
 def project(request, pk):
-	project = Project.objects.get(pk=pk)		
-	context = {'project' : project}
+	project = Project.objects.get(pk=pk)	
+	technologies = project.technologies.all()	
+	context = {'project' : project, 'technologies' : technologies}
 	return render(request,'portfolio/project.html', context)
 
 def contact(request):
