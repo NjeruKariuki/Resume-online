@@ -18,7 +18,7 @@ class Project(models.Model):
     technologies = models.ManyToManyField(Technology, blank=True, null=True)
     description = models.TextField(max_length=500, blank=True)
     git_link = models.CharField(max_length=200, blank=True)
-    images = models.ImageField(upload_to='projects/', blank=True)
+    image = models.ImageField(upload_to='projects/', blank=True)
 
     def __str__(self):
         return self.name

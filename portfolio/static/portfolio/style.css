@@ -21,3 +21,8 @@ html {
   #myBtn:hover {
     background-color: #555;
   }
+
+  .openproject {
+    color: #3b82f6;
+    cursor: pointer;
+  }

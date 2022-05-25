@@ -6,10 +6,13 @@ from django.template.loader import render_to_string
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from .models import Project
 
 
 def portfolio(request):
-    return render(request,'portfolio/dashboard.html')
+	projects = Project.objects.all()
+	project1 = Project.objects.get(pk=1)
+	return render(request,'portfolio/dashboard.html', context={'projects' : projects, 'specialproject' : project1})
 
 def resume(request):
     return render(request,'portfolio/resume.html')
