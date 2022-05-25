@@ -12,10 +12,13 @@ from .models import Project
 def portfolio(request):
 	projects = Project.objects.all()
 	project1 = Project.objects.get(pk=1)
-	return render(request,'portfolio/dashboard.html', context={'projects' : projects, 'specialproject' : project1})
+	context={'projects' : projects, 'specialproject' : project1}
+	return render(request,'portfolio/dashboard.html', context)
 
-def resume(request):
-    return render(request,'portfolio/resume.html')
+def project(request, pk):
+	project = Project.objects.get(pk=pk)		
+	context = {'project' : project}
+	return render(request,'portfolio/project.html', context)
 
 def contact(request):
 	if request.method == "POST":

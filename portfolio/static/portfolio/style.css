@@ -24,5 +24,11 @@ html {
 
   .openproject {
     color: #3b82f6;
+  }
+
+  .openproject:hover {
+    text-decoration: none;
+    color: white;
     cursor: pointer;
+    transform: scale(1.5);
   }
