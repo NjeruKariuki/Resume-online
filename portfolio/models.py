@@ -12,7 +12,6 @@ class Technology(models.Model):
     def __str__(self):
         return self.name
 
-
 class Project(models.Model):
     name = models.CharField(max_length=50)
     technologies = models.ManyToManyField(Technology, blank=True, null=True)
