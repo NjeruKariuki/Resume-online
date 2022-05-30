@@ -12,13 +12,26 @@ from .models import Project
 def portfolio(request):
 	projects = Project.objects.all()
 	project1 = Project.objects.get(pk=1)
-	context={'projects' : projects, 'specialproject' : project1}
+	feature_project_images = list(project1.images.all())
+	feature_image = feature_project_images[0]
+	print(project1.images.all())
+	projects_list = []
+	for project in projects:
+		projects_list.append({project: project.images.all()})
+
+	
+	context={'projects' : projects, 'specialproject' : project1, 'projects_list' : projects_list, 'feature_image' : feature_image}
 	return render(request,'portfolio/dashboard.html', context)
 
 def project(request, pk):
+	project_images = []
 	project = Project.objects.get(pk=pk)	
-	technologies = project.technologies.all()	
-	context = {'project' : project, 'technologies' : technologies}
+	technologies = project.technologies.all()
+	images = project.images.all()
+	for image in images:
+		project_images.append(image)
+
+	context = {'project' : project, 'technologies' : technologies, 'images': project_images}
 	return render(request,'portfolio/project.html', context)
 
 def contact(request):
