@@ -13,17 +13,41 @@ def portfolio(request):
 	projects = Project.objects.all()
 	project1 = Project.objects.get(pk=1)
 	project_images = list(project1.images.all())
-	feature_image = project_images[0]
-	#project images
-	p_images, imgs = [], []
-	for project in projects:
-		p_images.append(list(project.images.all()))
-	#get first image
-	for i in p_images:
-		imgs.append(i[0].image.url)
+	feature_image = project_images[0].name
 
-	imgs.clear()
-	context={'projects' : projects, 'specialproject' : project1, 'imgs' : imgs, 'feature_image' : feature_image}
+	#dictionary to store project name and first image
+	proj_dicts, proj_images, proj_names = [], [], []
+
+	for project in projects:
+		project.name = {'name': project.name, 'image' : list(project.images.all())[0]}
+		proj_dicts.append(project.name)
+
+	for p in proj_dicts:
+		proj_images.append(p['image'])
+
+	print(proj_images)
+	for img in proj_images:
+		ob = list(img.project_set.all())
+		for i in ob:
+			proj_names.append(i)
+			break
+
+	print(proj_names)
+	'''
+	for project in projects:
+		for img in proj_images:
+				if project.name == 
+					print(img)
+		break
+'''
+	context={'projects' : projects,
+	 'specialproject' : project1,
+	  'feature_image' : feature_image,
+	   'proj_dicts' : proj_dicts,
+	    'proj_images' : proj_images,
+		'proj_names' : proj_names
+		}
+
 	return render(request,'portfolio/dashboard.html', context)
 
 def project(request, pk):
