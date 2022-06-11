@@ -7,7 +7,7 @@ from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Project
-from users.models import ChiefImage
+from users.models import ChiefImage, Skills
 
 
 def portfolio(request):
@@ -18,10 +18,16 @@ def portfolio(request):
 	#image
 	image = ChiefImage.objects.all()[0]
 
+	#skills
+	skills = Skills.objects.all()
+
+	print(skills)
+
 	context={'projects' : projects,
 	 'specialproject' : project1,
 	  'feature_image' : feature_image,
-	  'image' : image
+	  'image' : image,
+	  'skills' : skills
 		}
 
 	return render(request,'portfolio/dashboard.html', context)
