@@ -22,10 +22,9 @@ def portfolio(request):
 	return render(request,'portfolio/dashboard.html', context)
 
 def project(request, pk):
-	project_images = []
 	project = Project.objects.get(pk=pk)	
 	technologies = project.technologies.all()
-	images = project.images.all()
+	image = project.images
 	for image in images:
 		project_images.append(image)
 
