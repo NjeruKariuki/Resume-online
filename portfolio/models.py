@@ -4,7 +4,6 @@ from django.db import models
 # Create your models here.
 
 #technologies
-
 class Technology(models.Model):
     name = models.CharField(max_length=50, blank=True)
     date_created = models.DateTimeField(auto_now_add=True, blank=True)

@@ -8,11 +8,12 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Project
 
-
 def portfolio(request):
 	projects = Project.objects.all()
 	project1 = Project.objects.get(pk=1)
 	feature_image = project1.image.url
+	#image
+
 
 	context={'projects' : projects,
 	 'specialproject' : project1,
@@ -22,13 +23,21 @@ def portfolio(request):
 	return render(request,'portfolio/dashboard.html', context)
 
 def project(request, pk):
+	project_images = []
 	project = Project.objects.get(pk=pk)	
 	technologies = project.technologies.all()
-	image = project.images
+	images = project.images.all()
+	f_image = project.image
 	for image in images:
 		project_images.append(image)
 
-	context = {'project' : project, 'technologies' : technologies, 'images': project_images}
+	print(project_images)
+
+	context = {'project' : project,
+	 'technologies' : technologies,
+	  'images': project_images,
+	  'f_image': f_image
+	  }
 	return render(request,'portfolio/project.html', context)
 
 def contact(request):
