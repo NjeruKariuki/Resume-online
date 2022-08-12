@@ -14,14 +14,11 @@ def portfolio(request):
 	projects = Project.objects.all()
 	project1 = Project.objects.get(pk=1)
 	feature_image = project1.image.url
-	print(feature_image)
 	#image
 	image = ChiefImage.objects.all()[0]
 
 	#skills
 	skills = Skills.objects.all()
-
-	print(skills)
 
 	context={'projects' : projects,
 	 'specialproject' : project1,
@@ -40,8 +37,6 @@ def project(request, pk):
 	f_image = project.image
 	for image in images:
 		project_images.append(image)
-
-	print(project_images)
 
 	context = {'project' : project,
 	 'technologies' : technologies,
@@ -73,7 +68,6 @@ def resume(request):
     return render(request, 'portfolio/resume.html')
 
 def sendEmail(request):
-
 	if request.method == 'POST':
 
 		template = render_to_string('portfolio/email_template.html', {
