@@ -1,3 +1,7 @@
+from email import message
+from re import template
+from unicodedata import name
+from urllib import request
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.core.mail import send_mail
@@ -8,6 +12,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Project
 from users.models import ChiefImage, Skills
+from .forms import ContactForm
 
 
 def portfolio(request):
@@ -47,21 +52,25 @@ def project(request, pk):
 
 def contact(request):
 	if request.method == "POST":
-		message_name = request.POST['name']
-		message_email = request.POST['email']
-		message = request.POST['message']
+		form = ContactForm()
+		if form.is_valid():
+			subject = form.cleaned_data['subject']
+			message = form.cleaned_data['message']
+			sender = form.cleaned_data['sender']
+
+			print(subject, message, sender)
 
 		#send mail function
 		send_mail(
-			'message from ' + message_name,#subject
+			f'Message Subject: {subject}',#subject
 			message,#message
-			message_email,#fromEmail
+			sender,#fromEmail
 			['freakoutbond2@gmail.com'],#ToEmail
 			fail_silently=False
 			)
-		return render(request, 'portfolio-home', {'message_name': message_name})
+		return render(request, 'dashboard.html', {'message': message})
 	else:
-		return render(request, 'portfolio/contact.html', {})
+		return render(request, 'dashboard.html', {})
 
 
 def resume(request):
@@ -70,20 +79,29 @@ def resume(request):
 def sendEmail(request):
 	if request.method == 'POST':
 
-		template = render_to_string('portfolio/email_template.html', {
+		template = render_to_string('portfolio/dashboard.html', {
 			'name':request.POST['name'],
 			'email':request.POST['email'],
 			'message':request.POST['message'],
 			})
 
-		email = EmailMessage(
+		print(template)
+	'''		email = EmailMessage(
 			request.POST['subject'],
 			template,
 			settings.EMAIL_HOST_USER,
 			['freakoutbond2@gmail.com']
 			)
+	
 
 		email.fail_silently=False
 		email.send()
 
+	'''
 	return render(request, 'portfolio/email_sent.html')
+
+
+
+
+
+

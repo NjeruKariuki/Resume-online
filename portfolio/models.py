@@ -1,7 +1,6 @@
 from email.mime import image
 from django.db import models
 
-# Create your models here.
 
 #technologies
 class Technology(models.Model):
@@ -29,3 +28,4 @@ class Project(models.Model):
 
     def __str__(self):
         return self.name
+
