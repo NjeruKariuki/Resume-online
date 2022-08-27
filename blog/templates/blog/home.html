@@ -18,7 +18,7 @@
             {% if post.content < 200 %}
             <p class="leading-relaxed mb-5">{{post.content|safe }}</p>
             {% else %}
-            <p class="article-content">{{ post.content | slice:":180" | safe}}</p>
+            <p class="article-content">{{ post.content | slice:":200" | safe}}</p>
             <a href="{% url 'post-detail' post.id  %}" class="mt-1.5 px-3 btn btn-primary float-right">Read More &rarr;</a>
             {% endif %}
             <br>

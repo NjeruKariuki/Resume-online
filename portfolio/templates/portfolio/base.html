@@ -21,17 +21,18 @@
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-blue-500 rounded-full" viewBox="0 0 24 24">
               <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
             </svg>
-            <span class="ml-3 text-xl">Danny</span>
+            <span class="ml-3 text-xl font-weight-bold">DK</span>
           </a>
-          <nav class="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-700	flex flex-wrap items-center text-base justify-center">
-            <a onclick="scrollToAbout()" class="mr-5 hover:text-white">About Me</a>
-            <a onclick="scrollToServices()" class="mr-5 hover:text-white">Services</a>
-            <a onclick="scrollToProjects()" class="mr-5 hover:text-white">Portfolio</a>
-            <a onclick="scrollToContact()" class="mr-5 hover:text-white">Contact Me</a>
-            <a href="{% url 'blog-home' %}" class="mr-5 hover:text-white">Blog &rarr;</a>
+          <nav class="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-700	flex flex-wrap items-right text-base justify-center float-right">
+            <a href="/" class="mr-5 hover:text-white">HOME</a>
+            <a onclick="scrollToAbout()" class="mr-5 hover:text-white">ABOUT ME</a>
+            <a onclick="scrollToServices()" class="mr-5 hover:text-white">SKILLS</a>
+            <a onclick="scrollToProjects()" class="mr-5 hover:text-white">PROJECTS</a>
+            <a onclick="scrollToContact()" class="mr-5 hover:text-white">CONNECT</a>
+            <a href="{% url 'blog-home' %}" class="mr-5 hover:text-white">BLOG &rarr;</a>
           </nav>
 
-          <a href="{% url 'register' %}" class="btn btn-primary">Sign Up  &rarr;
+          <!-- <a href="{% url 'register' %}" class="btn btn-primary">Sign Up  &rarr; --> 
           </a>
         </div>
       </header>
@@ -47,7 +48,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-blue-500 rounded-full" viewBox="0 0 24 24">
               <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
             </svg>
-            <span class="ml-3 text-xl">Tailblocks</span>
+            <span class="ml-3 text-xl">Danny Kariuki</span>
           </a>
           <p class="text-sm text-gray-400 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-800 sm:py-2 sm:mt-0 mt-4">© 2020 Tailblocks —
             <a href="https://twitter.com/knyttneve" class="text-gray-500 ml-1" target="_blank" rel="noopener noreferrer">@knyttneve</a>

@@ -15,13 +15,35 @@ from users.models import ChiefImage, Skills
 from .forms import ContactForm
 
 
+def contact(request):
+	#var to keep track of form
+	messageSent = False
+	if request.method == "POST":
+		name = request.POST.get('name')
+		subject = request.POST.get('subject')
+		message = request.POST.get('message')
+		sender = request.POST.get('sender')
+		send_mail(
+				f'Message Subject: {subject}',#subject
+				message,#message
+				sender,#fromEmail
+				[settings.EMAIL_HOST_USER],#ToEmail
+				fail_silently=False
+			)
+		messageSent = True
+		return HttpResponse(f'Thank you {name} for connecting!')
+
+	return render(request, 'portfolio/dashboard.html', {
+		 'messageSent': messageSent,
+		  })
+
+
 def portfolio(request):
 	projects = Project.objects.all()
 	project1 = Project.objects.get(pk=1)
 	feature_image = project1.image.url
 	#image
 	image = ChiefImage.objects.all()[0]
-
 	#skills
 	skills = Skills.objects.all()
 
@@ -31,6 +53,23 @@ def portfolio(request):
 	  'image' : image,
 	  'skills' : skills
 		}
+
+	#var to keep track of form
+	messageSent = False
+	if request.method == "POST":
+		name = request.POST.get('name')
+		subject = request.POST.get('subject')
+		message = request.POST.get('message')
+		sender = request.POST.get('sender')
+		send_mail(
+				f'Message Subject: {subject}',#subject
+				message,#message
+				settings.EMAIL_HOST_USER,#fromEmail
+				['freakoutbond2@gmail.com'],#ToEmail
+				fail_silently=False
+			)
+		messageSent = True
+		return HttpResponse(f'Thank you {name} for connecting!')
 
 	return render(request,'portfolio/dashboard.html', context)
 
@@ -50,27 +89,7 @@ def project(request, pk):
 	  }
 	return render(request,'portfolio/project.html', context)
 
-def contact(request):
-	if request.method == "POST":
-		form = ContactForm()
-		if form.is_valid():
-			subject = form.cleaned_data['subject']
-			message = form.cleaned_data['message']
-			sender = form.cleaned_data['sender']
 
-			print(subject, message, sender)
-
-		#send mail function
-		send_mail(
-			f'Message Subject: {subject}',#subject
-			message,#message
-			sender,#fromEmail
-			['freakoutbond2@gmail.com'],#ToEmail
-			fail_silently=False
-			)
-		return render(request, 'dashboard.html', {'message': message})
-	else:
-		return render(request, 'dashboard.html', {})
 
 
 def resume(request):
