@@ -92,8 +92,8 @@ def project(request, pk):
 
 
 
-def resume(request):
-    return render(request, 'portfolio/resume.html')
+def resume(request):	
+    return render(request, 'portfolio/resume.html', {})
 
 def sendEmail(request):
 	if request.method == 'POST':
