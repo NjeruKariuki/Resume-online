@@ -15,28 +15,6 @@ from users.models import ChiefImage, Skills
 from .forms import ContactForm
 
 
-def contact(request):
-	#var to keep track of form
-	messageSent = False
-	if request.method == "POST":
-		name = request.POST.get('name')
-		subject = request.POST.get('subject')
-		message = request.POST.get('message')
-		sender = request.POST.get('sender')
-		send_mail(
-				f'Message Subject: {subject}',#subject
-				message,#message
-				sender,#fromEmail
-				[settings.EMAIL_HOST_USER],#ToEmail
-				fail_silently=False
-			)
-		messageSent = True
-		return HttpResponse(f'Thank you {name} for connecting!')
-
-	return render(request, 'portfolio/dashboard.html', {
-		 'messageSent': messageSent,
-		  })
-
 
 def portfolio(request):
 	projects = Project.objects.all()
@@ -94,7 +72,9 @@ def project(request, pk):
 
 def resume(request):	
     return render(request, 'portfolio/resume.html', {})
-
+	
+	
+'''
 def sendEmail(request):
 	if request.method == 'POST':
 
@@ -105,7 +85,7 @@ def sendEmail(request):
 			})
 
 		print(template)
-	'''		email = EmailMessage(
+		email = EmailMessage(
 			request.POST['subject'],
 			template,
 			settings.EMAIL_HOST_USER,
@@ -116,8 +96,32 @@ def sendEmail(request):
 		email.fail_silently=False
 		email.send()
 
-	'''
 	return render(request, 'portfolio/email_sent.html')
+
+def contact(request):
+	#var to keep track of form
+	messageSent = False
+	if request.method == "POST":
+		name = request.POST.get('name')
+		subject = request.POST.get('subject')
+		message = request.POST.get('message')
+		sender = request.POST.get('sender')
+		send_mail(
+				f'Message Subject: {subject}',#subject
+				message,#message
+				sender,#fromEmail
+				[settings.EMAIL_HOST_USER],#ToEmail
+				fail_silently=False
+			)
+		messageSent = True
+		return HttpResponse(f'Thank you {name} for connecting!')
+
+	return render(request, 'portfolio/dashboard.html', {
+		 'messageSent': messageSent,
+		  })
+-
+
+	'''
 
 
 
