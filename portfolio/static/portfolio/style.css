@@ -63,3 +63,11 @@ html {
 .navigation .container:hover{
   text-decoration: none;
 }
+
+.email-container {
+  display: block;
+  background: lightblue;
+  color: black;
+  justify-content: center;
+  align-items: center;
+}
