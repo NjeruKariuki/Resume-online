@@ -74,7 +74,6 @@ def resume(request):
     return render(request, 'portfolio/resume.html', {})
 	
 	
-'''
 def sendEmail(request):
 	if request.method == 'POST':
 
@@ -119,9 +118,6 @@ def contact(request):
 	return render(request, 'portfolio/dashboard.html', {
 		 'messageSent': messageSent,
 		  })
--
-
-	'''
 
 
 

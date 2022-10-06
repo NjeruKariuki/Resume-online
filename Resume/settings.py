@@ -129,8 +129,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 '''Email details'''
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.yahoo.fr'
+EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
-EMAIL_PORT = 25
-EMAIL_HOST_USER = 'njeruwatipi@yahoo.com'#sender's email-id
-EMAIL_HOST_PASSWORD = 'Goodkidgonebad87'#password associated with above email-id
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'freakoutbond2@gmail.com'#sender's email-id
+EMAIL_HOST_PASSWORD = 'bstvsxguylqyqqtm'
