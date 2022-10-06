@@ -72,30 +72,7 @@ def project(request, pk):
 
 def resume(request):	
     return render(request, 'portfolio/resume.html', {})
-	
-	
-def sendEmail(request):
-	if request.method == 'POST':
 
-		template = render_to_string('portfolio/dashboard.html', {
-			'name':request.POST['name'],
-			'email':request.POST['email'],
-			'message':request.POST['message'],
-			})
-
-		print(template)
-		email = EmailMessage(
-			request.POST['subject'],
-			template,
-			settings.EMAIL_HOST_USER,
-			['freakoutbond2@gmail.com']
-			)
-	
-
-		email.fail_silently=False
-		email.send()
-
-	return render(request, 'portfolio/email_sent.html')
 
 def contact(request):
 	#var to keep track of form
