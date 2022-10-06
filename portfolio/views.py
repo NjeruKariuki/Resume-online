@@ -90,7 +90,7 @@ def contact(request):
 				fail_silently=False
 			)
 		messageSent = True
-		return HttpResponse(f'Thank you {name} for connecting!')
+		return render(request, 'portfolio/email-success.html', {'messageSent' : messageSent, 'name' : name })
 
 	return render(request, 'portfolio/dashboard.html', {
 		 'messageSent': messageSent,
