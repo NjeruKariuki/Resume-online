@@ -47,8 +47,7 @@ def portfolio(request):
 				fail_silently=False
 			)
 		messageSent = True
-		return HttpResponse(f'Thank you {name} for connecting!')
-
+		return redirect('')
 	return render(request,'portfolio/dashboard.html', context)
 
 def project(request, pk):
@@ -67,37 +66,5 @@ def project(request, pk):
 	  }
 	return render(request,'portfolio/project.html', context)
 
-
-
-
 def resume(request):	
-    return render(request, 'portfolio/resume.html', {})
-
-
-def contact(request):
-	#var to keep track of form
-	messageSent = False
-	if request.method == "POST":
-		name = request.POST.get('name')
-		subject = request.POST.get('subject')
-		message = request.POST.get('message')
-		sender = request.POST.get('sender')
-		send_mail(
-				f'Message Subject: {subject}',#subject
-				message,#message
-				sender,#fromEmail
-				[settings.EMAIL_HOST_USER],#ToEmail
-				fail_silently=False
-			)
-		messageSent = True
-		return render(request, 'portfolio/email-success.html', {'messageSent' : messageSent, 'name' : name })
-
-	return render(request, 'portfolio/dashboard.html', {
-		 'messageSent': messageSent,
-		  })
-
-
-
-
-
-
+    return render(request, 'portfolio/resume.html', {}
