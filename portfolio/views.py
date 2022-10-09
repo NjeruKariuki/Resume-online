@@ -47,7 +47,7 @@ def portfolio(request):
 				fail_silently=False
 			)
 		messageSent = True
-		return redirect('')
+		return redirect('/')
 	return render(request,'portfolio/dashboard.html', context)
 
 def project(request, pk):
@@ -67,4 +67,4 @@ def project(request, pk):
 	return render(request,'portfolio/project.html', context)
 
 def resume(request):	
-    return render(request, 'portfolio/resume.html', {}
+    return render(request, 'portfolio/resume.html', {})
